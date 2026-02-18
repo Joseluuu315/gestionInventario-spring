@@ -1,0 +1,79 @@
+/* ── Inventario Tienda - Estilos personalizados ── */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+}
+
+/* Cards */
+.card {
+    border-radius: 0.75rem;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card-header {
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+    font-weight: 600;
+}
+
+/* Tables */
+.table > thead > tr > th {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Badges */
+.badge {
+    font-weight: 500;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background: transparent;
+    padding: 0;
+}
+
+/* Form */
+.form-control:focus, .form-select:focus {
+    border-color: #343a40;
+    box-shadow: 0 0 0 0.2rem rgba(52,58,64,0.15);
+}
+
+/* Stats card icon circle */
+.rounded-circle {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Alert improvements */
+.alert {
+    border-radius: 0.75rem;
+    border: none;
+}
+
+/* Table row hover */
+tbody tr:hover {
+    background-color: rgba(0,0,0,0.03);
+}
+
+/* Login page */
+.login-card {
+    border-radius: 1rem;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Login')}"></head>
+<body class="bg-dark d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+
+<div class="card shadow-lg" style="width: 400px;">
+    <div class="card-header bg-dark text-white text-center py-4">
+        <h3><i class="bi bi-shop fs-2"></i></h3>
+        <h4 class="mb-0">Inventario Tienda</h4>
+        <small class="text-muted">Sistema de Gestión</small>
+    </div>
+    <div class="card-body p-4">
+
+        <div th:if="${param.error}" class="alert alert-danger">
+            <i class="bi bi-exclamation-circle me-2"></i>
+            Usuario o contraseña incorrectos
+        </div>
+        <div th:if="${param.logout}" class="alert alert-info">
+            <i class="bi bi-info-circle me-2"></i>
+            Sesión cerrada correctamente
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label fw-semibold">
+                    <i class="bi bi-person me-1"></i>Usuario
+                </label>
+                <input type="text" id="username" name="username" class="form-control"
+                       placeholder="Ingresa tu usuario" required autofocus/>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="form-label fw-semibold">
+                    <i class="bi bi-lock me-1"></i>Contraseña
+                </label>
+                <input type="password" id="password" name="password" class="form-control"
+                       placeholder="Ingresa tu contraseña" required/>
+            </div>
+            <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+            </button>
+        </form>
+
+        <hr class="my-3"/>
+        <div class="small text-muted text-center">
+            <strong>Credenciales demo:</strong><br/>
+            Admin: <code>admin / admin123</code><br/>
+            Usuario: <code>usuario / user123</code>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/layout :: scripts}"></div>
+</body>
+</html>

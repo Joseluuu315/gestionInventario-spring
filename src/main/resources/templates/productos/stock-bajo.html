@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Stock Bajo')}"></head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-warning"><i class="bi bi-exclamation-triangle me-2"></i>Alertas de Stock Bajo</h2>
+    </div>
+
+    <!-- Umbral selector -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form th:action="@{/productos/stock-bajo}" method="get" class="d-flex align-items-center gap-3">
+                <label class="fw-semibold mb-0">Umbral de stock:</label>
+                <input type="number" name="umbral" class="form-control w-auto"
+                       th:value="${umbral}" min="1" style="width: 100px;"/>
+                <button type="submit" class="btn btn-warning">
+                    <i class="bi bi-funnel me-1"></i>Filtrar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div th:if="${productos.isEmpty()}" class="alert alert-success">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        ¡Todos los productos tienen stock suficiente (umbral: <strong th:text="${umbral}"></strong> unidades).
+    </div>
+
+    <div th:unless="${productos.isEmpty()}" class="card shadow-sm">
+        <div class="card-header bg-warning text-dark">
+            <span th:text="${productos.size()} + ' productos con stock bajo (< ' + umbral + ' unidades)'"></span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th class="text-center">Stock</th>
+                    <th class="text-end">Precio</th>
+                    <th>Categorías</th>
+                    <th class="text-center">Acción</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="p : ${productos}">
+                    <td class="fw-semibold" th:text="${p.nombre}"></td>
+                    <td class="text-center">
+                        <span class="badge bg-danger fs-6" th:text="${p.stock}"></span>
+                    </td>
+                    <td class="text-end" th:text="${#numbers.formatDecimal(p.precio, 1, 'POINT', 2, 'COMMA')} + ' €'"></td>
+                    <td>
+                        <span th:each="cat : ${p.categorias}" class="badge bg-secondary me-1" th:text="${cat}"></span>
+                    </td>
+                    <td class="text-center">
+                        <a th:href="@{/productos/{id}/stock(id=${p.id})}" class="btn btn-sm btn-warning">
+                            <i class="bi bi-boxes me-1"></i>Reponer
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/layout :: footer}"></div>
+<div th:replace="~{fragments/layout :: scripts}"></div>
+</body>
+</html>
