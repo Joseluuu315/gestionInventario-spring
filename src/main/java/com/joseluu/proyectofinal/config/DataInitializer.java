@@ -33,22 +33,22 @@ public class DataInitializer implements CommandLineRunner {
      */
     public void run(String... args) {
         if (categoriaRepository.count() > 0) {
-            log.info("Datos de prueba ya existentes, saltando inicializaciÃƒÆ’Ã‚Â³n.");
+            log.info("Datos de prueba ya existentes, saltando inicializacion.");
             return;
         }
 
         log.info("Cargando datos de prueba...");
 
-        Categoria electronica = categoriaRepository.save(new Categoria("ElectrÃƒÆ’Ã‚Â³nica"));
-        Categoria informatica = categoriaRepository.save(new Categoria("InformÃƒÆ’Ã‚Â¡tica"));
+        Categoria electronica = categoriaRepository.save(new Categoria("Electronica"));
+        Categoria informatica = categoriaRepository.save(new Categoria("Informatica"));
         Categoria hogar = categoriaRepository.save(new Categoria("Hogar"));
         Categoria ropa = categoriaRepository.save(new Categoria("Ropa"));
-        Categoria alimentacion = categoriaRepository.save(new Categoria("AlimentaciÃƒÆ’Ã‚Â³n"));
+        Categoria alimentacion = categoriaRepository.save(new Categoria("Alimentacion"));
 
         // Productos
         Producto p1 = new Producto();
-        p1.setNombre("PortÃƒÆ’Ã‚Â¡til Lenovo ThinkPad");
-        p1.setDescripcion("PortÃƒÆ’Ã‚Â¡til profesional con Intel i7, 16GB RAM, 512GB SSD");
+        p1.setNombre("Portatil Lenovo ThinkPad");
+        p1.setDescripcion("Portatil profesional con Intel i7, 16GB RAM, 512GB SSD");
         p1.setPrecio(new BigDecimal("1299.99"));
         p1.setStock(8);
         productoRepository.save(p1);
@@ -56,8 +56,8 @@ public class DataInitializer implements CommandLineRunner {
         productoCategoriaRepository.save(new ProductoCategoria(p1, informatica));
 
         Producto p2 = new Producto();
-        p2.setNombre("RatÃƒÆ’Ã‚Â³n InalÃƒÆ’Ã‚Â¡mbrico Logitech MX");
-        p2.setDescripcion("RatÃƒÆ’Ã‚Â³n ergonÃƒÆ’Ã‚Â³mico, baterÃƒÆ’Ã‚Â­a 70 dÃƒÆ’Ã‚Â­as, multi-dispositivo");
+        p2.setNombre("Raton inalambrico Logitech MX");
+        p2.setDescripcion("RAton multidispositivo");
         p2.setPrecio(new BigDecimal("79.90"));
         p2.setStock(3);
         productoRepository.save(p2);
@@ -65,7 +65,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Producto p3 = new Producto();
         p3.setNombre("Auriculares Sony WH-1000XM5");
-        p3.setDescripcion("CancelaciÃƒÆ’Ã‚Â³n de ruido activa, 30h baterÃƒÆ’Ã‚Â­a, sonido premium");
+        p3.setDescripcion("Cancelacion de ruido y bateria de 20h");
         p3.setPrecio(new BigDecimal("349.00"));
         p3.setStock(15);
         productoRepository.save(p3);
@@ -73,7 +73,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Producto p4 = new Producto();
         p4.setNombre("Cafetera Nespresso Vertuo");
-        p4.setDescripcion("Cafetera automÃƒÆ’Ã‚Â¡tica compatible con cÃƒÆ’Ã‚Â¡psulas Vertuo");
+        p4.setDescripcion("Cafetera automatica compatible con capsulas Vertuo");
         p4.setPrecio(new BigDecimal("129.00"));
         p4.setStock(2);
         productoRepository.save(p4);
@@ -81,8 +81,8 @@ public class DataInitializer implements CommandLineRunner {
         productoCategoriaRepository.save(new ProductoCategoria(p4, electronica));
 
         Producto p5 = new Producto();
-        p5.setNombre("Camiseta AlgodÃƒÆ’Ã‚Â³n Premium");
-        p5.setDescripcion("100% algodÃƒÆ’Ã‚Â³n orgÃƒÆ’Ã‚Â¡nico, varios colores disponibles");
+        p5.setNombre("Camiseta Algodon Premium");
+        p5.setDescripcion("100% algodon organico, varios colores disponibles");
         p5.setPrecio(new BigDecimal("24.99"));
         p5.setStock(50);
         productoRepository.save(p5);
@@ -98,8 +98,8 @@ public class DataInitializer implements CommandLineRunner {
         productoCategoriaRepository.save(new ProductoCategoria(p6, electronica));
 
         Producto p7 = new Producto();
-        p7.setNombre("Pack CafÃƒÆ’Ã‚Â© Molido Especial");
-        p7.setDescripcion("Mezcla de tueste medio, 500g, origen EtiopÃƒÆ’Ã‚Â­a");
+        p7.setNombre("Pack Cafe Molido Especial");
+        p7.setDescripcion("Mezcla de tueste medio, 500g, origen Etiopia");
         p7.setPrecio(new BigDecimal("12.50"));
         p7.setStock(1);
         productoRepository.save(p7);

@@ -64,11 +64,11 @@ public class GlobalExceptionHandler {
             Map<String, Object> body = new HashMap<>();
             body.put("timestamp", LocalDateTime.now().toString());
             body.put("status", 400);
-            body.put("error", "ValidaciÃƒÆ’Ã‚Â³n fallida");
+            body.put("error", "Validacion fallida");
             body.put("errores", errores);
             return ResponseEntity.badRequest().body(body);
         }
-        return vistaError("error", "Datos de entrada invÃƒÆ’Ã‚Â¡lidos", HttpStatus.BAD_REQUEST.value());
+        return vistaError("error", "Datos de entrada invalidos", HttpStatus.BAD_REQUEST.value());
     }
 
     @ExceptionHandler(Exception.class)

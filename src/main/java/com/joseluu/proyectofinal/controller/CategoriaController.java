@@ -38,7 +38,7 @@ public class CategoriaController {
      */
     public String formularioNueva(Model model) {
         model.addAttribute("categoriaForm", new CategoriaDTO.Request());
-        model.addAttribute("titulo", "Nueva CategorÃƒÆ’Ã‚Â­a");
+        model.addAttribute("titulo", "Nueva Categoria");
         return "categorias/formulario";
     }
 
@@ -52,11 +52,11 @@ public class CategoriaController {
                                  Model model,
                                  RedirectAttributes redirectAttrs) {
         if (result.hasErrors()) {
-            model.addAttribute("titulo", "Nueva CategorÃƒÆ’Ã‚Â­a");
+            model.addAttribute("titulo", "Nueva Categoria");
             return "categorias/formulario";
         }
         categoriaService.crearCategoria(dto);
-        redirectAttrs.addFlashAttribute("exito", "CategorÃƒÆ’Ã‚Â­a creada correctamente");
+        redirectAttrs.addFlashAttribute("exito", "Categoria creada correctamente");
         return "redirect:/categorias";
     }
 
@@ -71,7 +71,7 @@ public class CategoriaController {
         form.setNombre(cat.getNombre());
         model.addAttribute("categoriaForm", form);
         model.addAttribute("categoriaId", id);
-        model.addAttribute("titulo", "Editar CategorÃƒÆ’Ã‚Â­a");
+        model.addAttribute("titulo", "Editar Categoria");
         return "categorias/formulario";
     }
 
@@ -87,11 +87,11 @@ public class CategoriaController {
                                       RedirectAttributes redirectAttrs) {
         if (result.hasErrors()) {
             model.addAttribute("categoriaId", id);
-            model.addAttribute("titulo", "Editar CategorÃƒÆ’Ã‚Â­a");
+            model.addAttribute("titulo", "Editar Categoria");
             return "categorias/formulario";
         }
         categoriaService.actualizarCategoria(id, dto);
-        redirectAttrs.addFlashAttribute("exito", "CategorÃƒÆ’Ã‚Â­a actualizada correctamente");
+        redirectAttrs.addFlashAttribute("exito", "Categoria actualizada correctamente");
         return "redirect:/categorias";
     }
 
@@ -102,7 +102,7 @@ public class CategoriaController {
      */
     public String eliminar(@PathVariable Long id, RedirectAttributes redirectAttrs) {
         categoriaService.eliminarCategoria(id);
-        redirectAttrs.addFlashAttribute("exito", "CategorÃƒÆ’Ã‚Â­a eliminada correctamente");
+        redirectAttrs.addFlashAttribute("exito", "Categoria eliminada correctamente");
         return "redirect:/categorias";
     }
 }

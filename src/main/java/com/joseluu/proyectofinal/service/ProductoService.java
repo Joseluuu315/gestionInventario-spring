@@ -190,7 +190,7 @@ public class ProductoService {
         Producto producto = findById(productoId);
         Categoria categoria = categoriaService.findById(categoriaId);
         if (productoCategoriaRepository.existsByProductoAndCategoria(producto, categoria)) {
-            throw new NegocioException("El producto ya pertenece a esa categorÃƒÆ’Ã‚Â­a");
+            throw new NegocioException("El producto ya pertenece a esa categoria");
         }
         productoCategoriaRepository.save(new ProductoCategoria(producto, categoria));
     }
@@ -203,7 +203,7 @@ public class ProductoService {
         Producto producto = findById(productoId);
         Categoria categoria = categoriaService.findById(categoriaId);
         ProductoCategoria pc = productoCategoriaRepository.findByProductoAndCategoria(producto, categoria)
-                .orElseThrow(() -> new NegocioException("El producto no pertenece a esa categorÃƒÆ’Ã‚Â­a"));
+                .orElseThrow(() -> new NegocioException("El producto no pertenece a esa categoria"));
         productoCategoriaRepository.delete(pc);
     }
 
