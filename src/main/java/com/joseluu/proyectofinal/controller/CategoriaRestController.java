@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class CategoriaRestController {
     private final CategoriaService categoriaService;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     /*
      * Obtiene datos para listados.
      * Aplica filtros opcionales y prepara el resultado para vista o API.
@@ -31,6 +33,7 @@ public class CategoriaRestController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     /*
      * Recupera un recurso por id.
      * Devuelve el registro solicitado o deja que la capa de errores lo gestione.
@@ -40,6 +43,7 @@ public class CategoriaRestController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Crea un recurso desde API.
      * Valida entrada y responde con estado HTTP 201 cuando se crea correctamente.
@@ -49,6 +53,7 @@ public class CategoriaRestController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Actualiza un recurso existente.
      * Aplica cambios validados y devuelve la representacion actualizada.
@@ -59,6 +64,7 @@ public class CategoriaRestController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Elimina el recurso indicado.
      * Delegacion directa a servicio y respuesta acorde al tipo de endpoint.

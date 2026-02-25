@@ -4,6 +4,7 @@ import com.joseluu.proyectofinal.dto.CategoriaDTO;
 import com.joseluu.proyectofinal.service.CategoriaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/categorias")
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyRole('USER','ADMIN')")
 /*
  * Controlador de entrada para CategoriaController.
  * Procesa parametros HTTP, delega al servicio y prepara la vista o respuesta API.
@@ -32,6 +34,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/nueva")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Prepara formulario de alta de categoria.
      * Inicializa DTO y atributos necesarios para renderizar la pantalla.
@@ -43,6 +46,7 @@ public class CategoriaController {
     }
 
     @PostMapping("/nueva")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Crea una categoria con datos validados.
      * Si hay errores de binding, vuelve al formulario; si no, guarda y redirige.
@@ -61,6 +65,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/{id}/editar")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Prepara formulario de edicion.
      * Carga el estado actual del registro y lo mapea al DTO de entrada.
@@ -76,6 +81,7 @@ public class CategoriaController {
     }
 
     @PostMapping("/{id}/editar")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Actualiza una categoria existente.
      * Valida datos y persiste cambios manteniendo reglas de negocio.
@@ -96,6 +102,7 @@ public class CategoriaController {
     }
 
     @PostMapping("/{id}/eliminar")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Elimina el recurso indicado.
      * Delegacion directa a servicio y respuesta acorde al tipo de endpoint.

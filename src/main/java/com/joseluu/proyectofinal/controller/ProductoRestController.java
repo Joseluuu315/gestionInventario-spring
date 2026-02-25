@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -24,6 +25,7 @@ public class ProductoRestController {
     private final ProductoService productoService;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     /*
      * Obtiene datos para listados.
      * Aplica filtros opcionales y prepara el resultado para vista o API.
@@ -41,6 +43,7 @@ public class ProductoRestController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     /*
      * Recupera un recurso por id.
      * Devuelve el registro solicitado o deja que la capa de errores lo gestione.
@@ -50,6 +53,7 @@ public class ProductoRestController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Crea un recurso desde API.
      * Valida entrada y responde con estado HTTP 201 cuando se crea correctamente.
@@ -59,6 +63,7 @@ public class ProductoRestController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Actualiza un recurso existente.
      * Aplica cambios validados y devuelve la representacion actualizada.
@@ -69,6 +74,7 @@ public class ProductoRestController {
     }
 
     @PatchMapping("/{id}/stock")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Actualiza el stock de un producto.
      * Valida que no sea negativo antes de persistir.
@@ -79,6 +85,7 @@ public class ProductoRestController {
     }
 
     @PatchMapping("/{id}/precio")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Actualiza el precio de un producto.
      * Valida reglas de negocio del precio y guarda el cambio.
@@ -89,6 +96,7 @@ public class ProductoRestController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Elimina el recurso indicado.
      * Delegacion directa a servicio y respuesta acorde al tipo de endpoint.
@@ -99,6 +107,7 @@ public class ProductoRestController {
     }
 
     @GetMapping("/stock-bajo")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     /*
      * Lista productos con stock bajo.
      * Permite definir umbral para monitoreo y reposicion operativa.
@@ -109,6 +118,7 @@ public class ProductoRestController {
     }
 
     @GetMapping("/valor-inventario")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     /*
      * Calcula valor total del inventario.
      * Retorna la suma agregada de precio por stock disponible.
@@ -118,6 +128,7 @@ public class ProductoRestController {
     }
 
     @GetMapping("/{id}/categorias")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     /*
      * Obtiene categorias de un producto.
      * Devuelve nombres asociados para consumo de interfaz o API.
@@ -127,6 +138,7 @@ public class ProductoRestController {
     }
 
     @PostMapping("/{id}/categorias/{categoriaId}")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Crea relacion producto-categoria.
      * Verifica existencia y evita asociaciones duplicadas.
@@ -138,6 +150,7 @@ public class ProductoRestController {
     }
 
     @DeleteMapping("/{id}/categorias/{categoriaId}")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Elimina relacion producto-categoria.
      * Borra solo la vinculacion solicitada.

@@ -36,4 +36,13 @@ public class HomeController {
     public String login() {
         return "login";
     }
+
+    @GetMapping("/acceso-denegado")
+    /*
+     * Devuelve la vista de acceso denegado.
+     * Se usa cuando un usuario autenticado no tiene permisos suficientes.
+     */
+    public String accesoDenegado() {
+        return "403";
+    }
 }

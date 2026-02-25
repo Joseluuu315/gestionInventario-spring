@@ -5,6 +5,7 @@ import com.joseluu.proyectofinal.service.CategoriaService;
 import com.joseluu.proyectofinal.service.ProductoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/productos")
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyRole('USER','ADMIN')")
 /*
  * Controlador de entrada para ProductoController.
  * Procesa parametros HTTP, delega al servicio y prepara la vista o respuesta API.
@@ -46,6 +48,7 @@ public class ProductoController {
     }
 
     @GetMapping("/nuevo")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Prepara formulario de alta de producto.
      * Carga DTO vacio, catalogo de categorias y metadatos para la vista.
@@ -58,6 +61,7 @@ public class ProductoController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Crea un producto nuevo.
      * Valida datos de entrada, persiste entidad y devuelve confirmacion.
@@ -77,6 +81,7 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}/editar")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Prepara formulario de edicion.
      * Carga el estado actual del registro y lo mapea al DTO de entrada.
@@ -96,6 +101,7 @@ public class ProductoController {
     }
 
     @PostMapping("/{id}/editar")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Actualiza un producto existente.
      * Sincroniza datos base y sus asociaciones con categorias.
@@ -117,6 +123,7 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}/stock")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Prepara la pantalla de ajuste de stock.
      * Expone el producto actual y un DTO para capturar el nuevo valor.
@@ -128,6 +135,7 @@ public class ProductoController {
     }
 
     @PostMapping("/{id}/stock")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Actualiza el stock de un producto.
      * Valida que no sea negativo antes de persistir.
@@ -147,6 +155,7 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}/precio")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Prepara la pantalla de ajuste de precio.
      * Expone el producto y un DTO para capturar el nuevo importe.
@@ -158,6 +167,7 @@ public class ProductoController {
     }
 
     @PostMapping("/{id}/precio")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Actualiza el precio de un producto.
      * Valida reglas de negocio del precio y guarda el cambio.
@@ -187,6 +197,7 @@ public class ProductoController {
     }
 
     @PostMapping("/{id}/eliminar")
+    @PreAuthorize("hasRole('ADMIN')")
     /*
      * Elimina el recurso indicado.
      * Delegacion directa a servicio y respuesta acorde al tipo de endpoint.
